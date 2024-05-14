@@ -26,6 +26,14 @@ app.set('view engine', 'html');
 app.use('/views', express.static(path.join(__dirname, 'views')));
 app.set('views', path.join(__dirname, '/views'));
 
+//ROTA DE PASTAS PARAR MOSTRAR A PAGINA
+
+app.get('/pastas',(req,res)=>{
+    res.render('pastas');
+})
+
+
+
 //ROTA DE CADASTRO PARA MOSTRAR PAGINA
 app.get('/cadastro',(req,res)=>{
 
@@ -66,7 +74,7 @@ app.post('/', (req,res) => {
 
     if (user){
         req.session.login = login;
-        res.render('index', {login: login});
+        res.render('pastas', {login: login});
         console.log(`O usuário logado é: ${(req.session.login)}`)
     }else{
         res.render('login');
