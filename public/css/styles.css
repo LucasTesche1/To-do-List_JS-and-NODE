@@ -10,14 +10,13 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
   padding: 50px;
-  
 }
 
 .todo-container {
@@ -40,7 +39,7 @@ button {
   font-size: 12px;
   font-weight: bold;
   padding: 8px 20px;
-  letter-spacing: 1px; 
+  letter-spacing: 1px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -75,11 +74,54 @@ select {
   display: none;
 }
 
-
 .todo-container header {
   text-align: center;
   padding: 0 1rem 1rem;
   border-bottom: 1px solid #ccc;
+}
+
+.container-pastes {
+  flex-direction: column;
+  display: flex;
+  width: 100px;
+}
+
+.btn-pastes {
+  width: 60px;
+  height: 60px;
+  margin: 2em;
+  border: none;
+  cursor: pointer;
+}
+
+.buttons-text {
+  display: flex;
+  width: 1000px;
+  text-align: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+#btn-yellow {
+  background-color: rgba(243, 243, 0, 0.685);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+#btn-green {
+  background-color: rgba(0, 155, 0, 0.733);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+#btn-red {
+  background-color: rgba(238, 1, 1, 0.719);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 /* Todo Form*/
@@ -96,11 +138,12 @@ select {
   font-weight: bold;
 }
 
-#todo-input,#search-input{
+#todo-input,
+#search-input {
   border: 1px solid #007bff;
 }
 
-#todo-input{
+#todo-input {
   width: 100%;
 }
 
@@ -159,38 +202,33 @@ select {
   border: 1px solid #007bff;
 }
 
-
-button.finish-todo:hover{
+button.finish-todo:hover {
   background-color: #21bb29;
   border: 2px solid #109917;
   transition: 0.3s;
 }
 
-
-
-button.remove-todo:hover{
+button.remove-todo:hover {
   background-color: #bb2129;
   border: 2px solid #8a0e14;
   transition: 0.3s;
 }
 
-#btn1{
+#btn1 {
   font-size: 15px;
   padding: 6px 20px;
 }
 
-#erase-button{
+#erase-button {
   border: 2px solid #8a0e14;
   background-color: #ffffff;
 }
 
-#erase-button:hover{
+#erase-button:hover {
   background-color: #bb2129;
   border: 2px solid #8a0e14;
   transition: 0.3s;
 }
-
-
 
 /* Todo List*/
 

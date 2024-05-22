@@ -1,52 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-do-List-Lucas</title>
-    <!--css do projeto-->
-    <link rel="stylesheet" href="/public/css/styles.css" />
-    <!--fonte-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-   
-  </head>
-  <body>
-    <!--Container Geral-->
-    <div class="todo-container">
-      <header>
-        <h1>Pastas do(a) <%= login %> </h1>
-      </header>
 
-      <form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-do-List-Lucas</title>
+  <!--css do projeto-->
+  <link rel="stylesheet" href="/public/css/styles-pastes.css" />
+  <!--fonte-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <button onclick="redirecionaIndex1()">Pasta Roxa</button>
-        <button onclick="redirecionaIndex2()">Pasta Verde</button>
-        <button onclick="redirecionaIndex3()">Pasta Vermelha</button>
+</head>
 
-      </form>
-     
+<body>
+  <!--Container Geral-->
+  <div class="todo-container">
+    <header>
+      <h1>Pastas do(a) <%= login %>
+      </h1>
+    </header>
 
-      
-  </body>
+    <p style="justify-content: center; align-items: center; display: flex; margin-top: 15px;">Escolha sua pasta</p>
 
-  <script>
-    function redirecionaIndex1(){
-        return window.location.href = "/views/index1.html";
-    }
 
-    function redirecionaIndex2(){
-        return window.location.href = "/views/index2.html";
-    }
 
-    function redirecionaIndex3(){
-        return window.location.href = "/views/index3.html";
-    }
-    
-  </script>
+    <div class="container-pastes">
+      <div class="buttons-text">
+        <button id="btn-green" class="btn-pastes" onclick="redirecionaIndex1()"><img
+            src="/public/images/archive-icon.png" width="20px" height="20px" alt=""></button>
+        <select class="filter-select-buttons">
+          <option value="all">Casa</option>
+          <option value="done">Faculdade</option>
+          <option value="todo">Trabalho</option>
+        </select>
+      </div>
+
+      <div class="buttons-text">
+        <button id="btn-red" class="btn-pastes" onclick="redirecionaIndex2()"><img src="/public/images/archive-icon.png"
+            width="20px" height="20px" alt=""></button>
+        <select class="filter-select-buttons">
+          <option value="all">Faculdade</option>
+          <option value="done">Casa</option>
+          <option value="todo">Trabalho</option>
+        </select>
+      </div>
+
+      <div class="buttons-text">
+        <button id="btn-yellow" class="btn-pastes" onclick="redirecionaIndex3()"><img
+            src="/public/images/archive-icon.png" width="20px" height="20px" alt=""></button>
+        <select class="filter-select-buttons">
+          <option value="all">Trabalho</option>
+          <option value="done">Faculdade</option>
+          <option value="todo">Casa</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+<script>
+  function redirecionaIndex1() {
+    return window.location.href = "/views/index.html";
+  }
+
+  function redirecionaIndex2() {
+    return window.location.href = "/views/index2.html";
+  }
+
+  function redirecionaIndex3() {
+    return window.location.href = "/views/index3.html";
+  }
+
+</script>
+
 </html>
