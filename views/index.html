@@ -16,10 +16,21 @@
 </head>
 
 <body>
+
+  </div>
   <!--Container Geral-->
   <div class="todo-container">
     <header>
-      <h1>Lista de Afazeres do(a) <%= login %>
+      <div class="teste">
+        <!--Esse botão está configurado para redirecionar para a pagina de pastas ao clicar em voltar-->
+        <button type="button" onclick="window.location.href = '/views/pastas.html'"><i
+            class="fas fa-angle-left"></i></button>
+      </div>
+
+      <h1>
+        Lista de Afazeres do(a) Lucas
+        <img src="/public/images/archive-icon.png" width="20px" height="20px" alt=""
+          style="background-color: rgba(0, 155, 0, 0.733);" />
       </h1>
     </header>
 

@@ -80,3 +80,7 @@ app.post("/", (req, res) => {
 app.listen(port, () => {
   console.log("servidor rodando");
 });
+
+app.get("/To-do-List_JS-and-NODE-main/views/pastas", (req, res) => {
+  res.render("pastas", { username: req.session.login });
+});

@@ -1,6 +1,5 @@
 //JAVASCRIPT DO TODOLIST(index)
 
-
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
@@ -24,6 +23,12 @@ const saveTodo = (text, done = 0, save = 1) => {
   const todoTitle = document.createElement("h3");
   todoTitle.innerText = text;
   todo.appendChild(todoTitle);
+
+  // Adiciona a data de criação da tarefa
+  const createdDate = document.createElement("p");
+  createdDate.classList.add("created-date");
+  createdDate.innerText = "Criado em: " + new Date().toLocaleDateString();
+  todo.appendChild(createdDate);
 
   const doneBtn = document.createElement("button");
   doneBtn.classList.add("finish-todo");
@@ -53,6 +58,7 @@ const saveTodo = (text, done = 0, save = 1) => {
 
   todoInput.value = "";
 };
+4;
 
 // Função pra esconder tudo quando o for editar
 const toggleForms = () => {
@@ -84,12 +90,14 @@ const getSearchedTodos = (search) => {
 
   todos.forEach((todo) => {
     const todoTitle = todo.querySelector("h3").innerText.toLowerCase();
+    const todoDate = todo
+      .querySelector(".created-date")
+      .innerText.toLowerCase();
 
     todo.style.display = "flex";
 
-    console.log(todoTitle);
-
-    if (!todoTitle.includes(search)) {
+    if (!todoTitle.includes(search) && !todoDate.includes(search)) {
+      // Verifica tanto o título quanto a data
       todo.style.display = "none";
     }
   });
@@ -103,7 +111,6 @@ const filterTodos = (filterValue) => {
   switch (filterValue) {
     case "all":
       todos.forEach((todo) => (todo.style.display = "flex"));
-
       break;
 
     case "done":
@@ -112,7 +119,6 @@ const filterTodos = (filterValue) => {
           ? (todo.style.display = "flex")
           : (todo.style.display = "none")
       );
-
       break;
 
     case "todo":
@@ -121,7 +127,6 @@ const filterTodos = (filterValue) => {
           ? (todo.style.display = "flex")
           : (todo.style.display = "none")
       );
-
       break;
 
     default:
