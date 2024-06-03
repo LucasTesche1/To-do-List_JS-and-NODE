@@ -24,12 +24,6 @@ app.set("view engine", "html");
 app.use("/views", express.static(path.join(__dirname, "views")));
 app.set("views", path.join(__dirname, "/views"));
 
-//ROTA DE PASTAS PARAR MOSTRAR A PAGINA
-
-app.get("/pastas", (req, res) => {
-  res.render("pastas");
-});
-
 //ROTA DE CADASTRO PARA MOSTRAR PAGINA
 app.get("/cadastro", (req, res) => {
   res.render("cadastro");
@@ -69,18 +63,35 @@ app.post("/", (req, res) => {
 
   if (user) {
     req.session.login = login;
-    res.render("pastas", { login: login });
+    res.redirect("/pastas");
     console.log(`O usuário logado é: ${req.session.login}`);
   } else {
     res.render("login");
   }
 });
 
+app.get("/pastas", (req, res) => {
+  if (!req.session.login) {
+    return res.redirect("/");
+  }
+  res.render("pastas", { login: req.session.login });
+});
+
+app.post("/index", (req, res) => {
+  if (!req.session.login) {
+    return res.redirect("/");
+  }
+  res.render(req.params.page, { login: req.session.login });
+});
+
+app.get("/views/pastas.html", (req, res) => {
+  if (!req.session.login) {
+    return res.redirect("/");
+  }
+  res.render("pastas", { login: req.session.login });
+});
+
 //CONFIRMAÇÃO DE SERVER FUNCIONANDO
 app.listen(port, () => {
   console.log("servidor rodando");
-});
-
-app.get("/To-do-List_JS-and-NODE-main/views/pastas", (req, res) => {
-  res.render("pastas", { username: req.session.login });
 });

@@ -13,7 +13,27 @@
 </head>
 
 <body>
-  <h2>Entre ou crie sua conta</h2>
+
+  <div class="container">
+    <h1 id="tlcadastro">Recupere sua senha!</h1>
+
+    <form id="formcadastro" action="/cadastro" method="post">
+
+      <label for="login">Login: </label>
+      <input type="text" placeholder="Insira seu login" name="login" />
+
+      <label for="password">Senha: </label>
+      <input type="password" placeholder="Insira sua senha" name="password" />
+
+      <div class="buttons-register">
+
+        <button type="submit">Concluir</button>
+        <!--Esse botão está configurado para redirecionar para a pagina de login ao clicar em voltar-->
+        <button type="button" onclick="window.location.href = '/views/login.html'">Voltar</button>
+      </div>
+  </div>
+
+
 
 </body>
 

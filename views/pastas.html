@@ -18,7 +18,10 @@
   <!--Container Geral-->
   <div class="todo-container">
     <header>
-      <h1>Pastas do(a) Lucas
+      <div class="botao">
+        <button type="button" onclick="window.location.href = '/'">Voltar</button>
+      </div>
+      <h1 id="titulo">Pastas do(a) <%= login %>
       </h1>
     </header>
 
@@ -67,7 +70,6 @@
 
 </body>
 
-<script src="index.js"></script>
 
 <script>
   function redirecionaIndex1() {
