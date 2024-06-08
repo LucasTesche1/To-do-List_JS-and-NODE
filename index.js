@@ -5,6 +5,37 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 
+
+//INTEGRANDO BANCO DE DADOS
+
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('teste', 'root', '', {
+  host: "localhost",
+  dialect: 'mysql', 
+});
+
+sequelize.authenticate().then(function(){
+    console.log("Conectado ao banco de dados!")
+}).catch(function(erro){
+    console.log("Falha ao se conectar: " +erro)
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //INICIALIZADORES DO SERVER
 const port = 3000;
 let path = require("path");
