@@ -31,10 +31,22 @@
       <div class="buttons-register">
         <button type="submit">Cadastrar</button>
         <!--Esse botão está configurado para redirecionar para a pagina de login ao clicar em voltar-->
-        <button type="button" onclick="window.location.href = '/views/login.html'">Voltar</button>
+        <button type="button" onclick="handleClickButton(), window.location.href = '/views/login.html'">Voltar</button>
       </div>
   </div>
 
 </body>
+
+
+<script>
+  const handleClickButton = () =>{
+  Axios.post("http://localhost:3000/cadastro",{
+    nome:values.login,
+    idade:values.password
+  }).then((response)=>{
+    console.log(response)
+  })
+}
+</script>
 
 </html>

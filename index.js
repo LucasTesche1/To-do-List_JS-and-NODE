@@ -2,44 +2,23 @@
 
 //INICIALIZADORES DE DEPENDÊNCIAS
 const express = require("express");
+const cors = require('cors');
 const session = require("express-session");
 const bodyParser = require("body-parser");
-
-
-//INTEGRANDO BANCO DE DADOS
-
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('teste', 'root', '', {
-  host: "localhost",
-  dialect: 'mysql', 
-});
-
-sequelize.authenticate().then(function(){
-    console.log("Conectado ao banco de dados!")
-}).catch(function(erro){
-    console.log("Falha ao se conectar: " +erro)
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//INICIALIZADORES DO SERVER
+const mysql = require('mysql2');
 const port = 3000;
-let path = require("path");
 const app = express();
+app.use(cors());
+app.use(express.json());
+let path = require("path");
+
+//DB
+const db = mysql. createPool({
+  host: "localhost",
+  user:"root",
+  password:"",
+  database:"teste",
+})
 
 //VARIAVEL DO SISTEMA PARA PEGAR O USER E SENHA E ARMAZENAR USUÁRIOS
 const users = [];
@@ -70,6 +49,14 @@ app.post("/cadastro", (req, res) => {
     console.log("Usuário já está cadastrado!");
     return res.redirect("/");
   }
+
+  //DB
+
+  let SQL = "INSERT INTO users(login,password) VALUES (?,?)";
+
+  db.query(SQL,[login,password],(err, result) =>{
+    console.log(err);
+  })
 
   //ADICIONA O USUÁRIO A LISTA
   users.push({ login, password });
