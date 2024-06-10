@@ -111,17 +111,30 @@ app.post("/", (req, res) => {
 
 
 app.post("/index", (req, res) => {
+
+  const {id_tasks,
+    content,
+    date} = req.body;
+
   if (!req.session.login) {
     return res.redirect("/");
   }
   res.render(req.params.page, { login: req.session.login });
+
+  //DB
+
+  let SQL = "INSERT INTO tasks(id_tasks,content,date) VALUES (?,?,?)";
+
+  db.query(SQL,[id_tasks,content,date],(err, result) =>{
+    console.log(err);
+  })
+
 });
 
 app.get("/pastas", (req, res) => {
   if (!req.session.login) {
     return res.redirect("/");
   }
-  res.send({login});
   res.render("pastas", { login: req.session.login });
 });
 

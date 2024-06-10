@@ -41,8 +41,8 @@
 <script>
   const handleClickButton = () =>{
   Axios.post("http://localhost:3000/cadastro",{
-    nome:values.login,
-    idade:values.password
+    login:values.login,
+    password:values.password
   }).then((response)=>{
     console.log(response)
   })

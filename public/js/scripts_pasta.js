@@ -1,3 +1,4 @@
+
 function redirecionaIndex1() {
   return (window.location.href = "/views/index.html");
 }
@@ -19,7 +20,7 @@ function editarNomePasta(button) {
 function salvarNomePasta(button) {
   const container = button.parentElement.parentElement;
   const input = container.querySelector('.edit-input');
-  const newName = input.value.trim();
+  newName = input.value.trim();
 
   if (newName) {
     const folderNameSpan = container.querySelector('.folder-name');
