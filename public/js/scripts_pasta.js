@@ -1,3 +1,4 @@
+
 function redirecionaIndex1() {
   return (window.location.href = "/views/index.html");
 }
