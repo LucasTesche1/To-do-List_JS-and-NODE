@@ -13,10 +13,21 @@ const filterBtn = document.querySelector("#filter-select");
 
 let oldInputValue;
 
+
 // Funções
 
 //Função pra salvar a tarefa e criar no HTML
-const saveTodo = (text, done = 0, save = 1) => {
+
+  const handleClickButton = () =>{
+    Axios.post("http://localhost:3000/index",{
+      h3:values.content,
+      :values.date
+    }).then((response)=>{
+      console.log(response)
+   })
+  } 
+
+  const saveTodo = (text, done = 0, save = 1) => {
   const todo = document.createElement("div");
   todo.classList.add("todo");
 
@@ -276,6 +287,7 @@ const updateTodoLocalStorage = (todoOldText, todoNewText) => {
 
   localStorage.setItem("todos", JSON.stringify(todos));
 };
+
 
 
 
