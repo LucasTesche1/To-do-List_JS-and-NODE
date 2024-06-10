@@ -1,4 +1,4 @@
-/*CSS DO INDEX, PAGINA PRINCIPAL DO TODO-LIST*/
+/*CSS DO INDEX, PAGINA PRINCIPAL DO TODO-LIST
 
 /* Geral */
 
@@ -8,10 +8,66 @@ header {
   gap: 50px;
 }
 
-.botao {
-  justify-content: left;
-  align-items: left;
-  margin-left: -120px;
+
+.edit-input{
+  padding: 4px;
+  margin-right: 4px;
+  border: 1px solid #333;
+  border-radius: 4px;
+
+}
+
+.opcoes{
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+
+.fa-pen{
+  color: #333;
+}
+
+.fa-pen:hover{
+  color: #007bff;
+}
+
+#lapis{
+  background-color: white;
+  color:#007bff;
+  border: none;
+  font-size: 18px;
+  padding: 4px;
+  margin: 0px 0px 0px 10px;
+}
+
+#lapis:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+}
+
+#btn-volta .save-btn {
+  border-radius: 5px;
+  border: 2px solid #007bff;
+  background-color: #0084ff;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 20px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#btn-volta .save-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #007bff;
+}
+
+.save-btn:hover{
+  transform: none;
+
 }
 
 #titulo {
@@ -48,8 +104,12 @@ body {
   overflow-y: auto;
 }
 
+
 button {
   border-radius: 5px;
+  border: 2px solid #007bff;
+  background-color: #0084ff;
+  color: #ffffff;
   font-size: 12px;
   font-weight: bold;
   padding: 8px 20px;
@@ -80,8 +140,7 @@ button.ghost {
   border-color: #007bff;
 }
 
-input,
-select {
+input {
   padding: 0.25rem 0.5rem;
 }
 
@@ -139,7 +198,8 @@ select {
   display: flex;
 }
 
-.filter-select-buttons {
-  border: none;
-  font-size: 16px;
+.folder-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

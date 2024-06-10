@@ -18,54 +18,80 @@
 <body>
   <!--Container Geral-->
   <div class="todo-container">
+
+    <div class="botao">
+      <button type="button" id="btn-volta" onclick="window.location.href = '/'">sair</button>
+    </div>    
+
     <header>
-      <div class="botao">
-        <button type="button" onclick="window.location.href = '/'">Voltar</button>
-      </div>
-      <div class="titulo_pastes" id="titulo"></div>
+      <h1 id="titulo">Pastas do(a) <%= login %></h1>
     </header>
 
     <p style="justify-content: center; align-items: center; display: flex; margin-top: 15px;">Escolha sua pasta</p>
 
-
-
     <div class="container-pastes">
       <div class="buttons-text">
-        <button id="btn-green" class="btn-pastes" onclick="redirecionaIndex1()">
-          <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+        <div class="opcoes">
+          <button id="btn-green" class="btn-pastes" onclick="redirecionaIndex1()">
+            <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+          </button>
+          <span class="folder-name">Casa</span>
+        </div>
+
+        <div class="edit-input-container" style="display:none;">
+          <input type="text" class="edit-input" placeholder="Novo nome">
+          <button class="save-btn" onclick="salvarNomePasta(this)">Salvar</button>
+        </div>
+
+        <button class="edit-btn" id="lapis" onclick="editarNomePasta(this)">
+          <i class="fa-solid fa-pen"></i>
         </button>
-        <select class="filter-select-buttons">
-          <option value="all">Casa</option>
-          <option value="done">Faculdade</option>
-          <option value="todo">Trabalho</option>
-        </select>
+
       </div>
 
       <div class="buttons-text">
-        <button id="btn-red" class="btn-pastes" onclick="redirecionaIndex2()">
-          <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+
+        <div class="opcoes">
+          <button id="btn-red" class="btn-pastes" onclick="redirecionaIndex2()">
+            <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+          </button>
+          <span class="folder-name">Faculdade</span>
+        </div>
+
+        <div class="edit-input-container" style="display:none;">
+          <input type="text" class="edit-input" placeholder="Novo nome">
+          <button class="save-btn" onclick="salvarNomePasta(this)">Salvar</button>
+        </div>
+
+        <button class="edit-btn" id="lapis" onclick="editarNomePasta(this)">
+          <i class="fa-solid fa-pen"></i>
         </button>
-        <select class="filter-select-buttons">
-          <option value="all">Faculdade</option>
-          <option value="done">Casa</option>
-          <option value="todo">Trabalho</option>
-        </select>
+
       </div>
 
       <div class="buttons-text">
-        <button id="btn-yellow" class="btn-pastes" onclick="redirecionaIndex3()">
-          <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+
+        <div class="opcoes">
+          <button id="btn-yellow" class="btn-pastes" onclick="redirecionaIndex3()">
+            <img src="/public/images/archive-icon.png" width="20px" height="20px" alt="">
+          </button>
+          <span class="folder-name">Trabalho</span>
+        </div>
+
+        <div class="edit-input-container" style="display:none;">
+          <input type="text" class="edit-input" placeholder="Novo nome">
+          <button class="save-btn" onclick="salvarNomePasta(this)">Salvar</button>
+        </div>
+
+        <button class="edit-btn" id="lapis" onclick="editarNomePasta(this)">
+          <i class="fa-solid fa-pen"></i>
         </button>
-        <select class="filter-select-buttons">
-          <option value="all">Trabalho</option>
-          <option value="done">Faculdade</option>
-          <option value="todo">Casa</option>
-        </select>
+
+
+
       </div>
     </div>
   </div>
-
-
 </body>
 
 </html>
