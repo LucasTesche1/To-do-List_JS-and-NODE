@@ -16,12 +16,9 @@ let path = require("path");
 const db = mysql. createPool({
   host: "localhost",
   user:"root",
-  password:"",
+  password:"c@tolic@",
   database:"teste",
 })
-
-//VARIAVEL DO SISTEMA PARA PEGAR O USER E SENHA E ARMAZENAR USUÁRIOS
-const users = [];
 
 //"USE" UTILIZADO PARA O CÓDIGO DA SESSÃO
 app.use(session({ secret: "nfsjhdnfshfbn2123ui23mm" }));
@@ -39,9 +36,12 @@ app.get("/cadastro", (req, res) => {
   res.render("cadastro");
 });
 
+//VARIAVEL DO SISTEMA PARA PEGAR O USER E SENHA E ARMAZENAR USUÁRIOS
+const users = [];
+
 //ROTA DE CADASTRO PARA SALVAR AS INFORMAÇÕES E REDIRECIONAR PARA A PAGINA DE LOGIN
 app.post("/cadastro", (req, res) => {
-  const { login, password } = req.body;
+  const { login, password} = req.body;
 
   //VERIFICA SE O USUÁRIO JÁ ESTÁ CADASTRADO
   const userExists = users.some((user) => user.login === login);
@@ -71,6 +71,27 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+})
+
+app.post("/login", (req, res) => {
+  const { login, password } = req.body;
+
+  const user = users.find(
+    (user) => user.login === login && user.password === password
+  );
+
+  if (user) {
+    req.session.login = login;
+    res.redirect("/pastas");
+    console.log(`O usuário logado é: ${req.session.login}`);
+  } else {
+    res.render("login");
+  }
+});
+
+
 //RESPOSTA DO SISTEMA CASO O LOGIN E A SENHA ESTEJAM CERTOS
 app.post("/", (req, res) => {
   const { login, password } = req.body;
@@ -88,12 +109,6 @@ app.post("/", (req, res) => {
   }
 });
 
-app.get("/pastas", (req, res) => {
-  if (!req.session.login) {
-    return res.redirect("/");
-  }
-  res.render("pastas", { login: req.session.login });
-});
 
 app.post("/index", (req, res) => {
   if (!req.session.login) {
@@ -102,12 +117,16 @@ app.post("/index", (req, res) => {
   res.render(req.params.page, { login: req.session.login });
 });
 
-app.get("/views/pastas.html", (req, res) => {
+app.get("/pastas", (req, res) => {
   if (!req.session.login) {
     return res.redirect("/");
   }
+  res.send({login});
   res.render("pastas", { login: req.session.login });
 });
+
+
+
 
 //CONFIRMAÇÃO DE SERVER FUNCIONANDO
 app.listen(port, () => {
