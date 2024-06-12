@@ -118,19 +118,22 @@ const getSearchedTodos = (search) => {
   const todos = document.querySelectorAll(".todo");
 
   todos.forEach((todo) => {
-    const todoTitle = todo.querySelector("h3").innerText.toLowerCase();
-    const todoDate = todo
-      .querySelector(".created-date")
-      .innerText.toLowerCase();
+    const todoTitleElement = todo.querySelector("h3");
+    const todoDateElement = todo.querySelector(".created-date");
 
-    todo.style.display = "flex";
+    if (todoTitleElement !== null && todoDateElement !== null) {
+      const todoTitle = todoTitleElement.innerText.toLowerCase();
+      const todoDate = todoDateElement.innerText.toLowerCase();
 
-    if (!todoTitle.includes(search) && !todoDate.includes(search)) {
-      // Verifica tanto o título quanto a data
-      todo.style.display = "none";
+      todo.style.display = "flex";
+
+      if (!todoTitle.includes(search) && !todoDate.includes(search)) {
+        todo.style.display = "none";
+      }
     }
   });
 };
+
 
 //Função para o filtro
 
