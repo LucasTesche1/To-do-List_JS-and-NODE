@@ -10,9 +10,11 @@ const port = 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(session({ secret: "nfsjhdnfshfbn2123ui23mm" }));
+app.use(bodyParser.urlencoded({ extended: true }));
 let path = require("path");
 
-//DB
+//CONEXÃO COM BANCO DE DADOS
 app.use(bodyParser.json());
 const db = mysql. createPool({
   host: "localhost",
@@ -29,9 +31,6 @@ db.getConnection((err) => {
   }
 });
 
-//"USE" UTILIZADO PARA O CÓDIGO DA SESSÃO
-app.use(session({ secret: "nfsjhdnfshfbn2123ui23mm" }));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 //LÓGICA DE ROTA ESTÁTICA DE ARQUIVOS
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -80,9 +79,13 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+
+//TRAZ A PÁGINA HOME
 app.get("/login", (req, res) => {
   res.render("login");
 })
+
+//VALIDA A ENTRADA
 
 app.post("/login", (req, res) => {
   const { login, password } = req.body;
@@ -118,7 +121,16 @@ app.post("/", (req, res) => {
   }
 });
 
+//TRAZ AS PASTAS
+app.get("/pastas", (req, res) => {
+  if (!req.session.login) {
+    return res.redirect("/");
+  }
+  res.render("pastas", { login: req.session.login });
+});
 
+
+//TRAZ A LISTA DE TAREFAS VERDE
 app.get("/index", (req,res) => {
   res.render("index");
 })
@@ -136,17 +148,43 @@ app.post("/index", (req, res) => {
   });
 });
 
+//TRAZ A LISTA DE TAREFAS VERMELHA
 
+app.get("/index2", (req,res) => {
+  res.render("index2");
+})
 
+app.post("/index2", (req, res) => {
+  const {tarefinha} = req.body;
+  const {dataFormatada} = req.body;
+  const {horaFormatada} = req.body;
 
-app.get("/pastas", (req, res) => {
-  if (!req.session.login) {
-    return res.redirect("/");
-  }
-  res.render("pastas", { login: req.session.login });
+  let SQL = "INSERT INTO tasks(content,date,hour) VALUES (?,?,?)";
+
+  db.query(SQL,[tarefinha,dataFormatada,horaFormatada],(err, result)=>{
+       console.log(err);
+
+  });
 });
 
+app.get("/index3", (req,res) => {
+  res.render("index3");
+})
 
+//TRAZ A LISTA DE TAREFAS AMARELA
+
+app.post("/index3", (req, res) => {
+  const {tarefinha} = req.body;
+  const {dataFormatada} = req.body;
+  const {horaFormatada} = req.body;
+
+  let SQL = "INSERT INTO tasks(content,date,hour) VALUES (?,?,?)";
+
+  db.query(SQL,[tarefinha,dataFormatada,horaFormatada],(err, result)=>{
+       console.log(err);
+
+  });
+});
 
 
 //CONFIRMAÇÃO DE SERVER FUNCIONANDO

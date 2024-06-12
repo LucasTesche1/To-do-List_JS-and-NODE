@@ -13,6 +13,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--js do projeto-->
     <script src="/public/js/scripts.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -33,15 +34,15 @@
 
         <!--Formulário para adicionar a tarefa-->
 
-        <form id="todo-form">
+        <form method="post" id="todo-form">
             <p>Adicione a sua tarefa</p>
             <div class="form-control">
-                <input type="text" id="todo-input" placeholder="O que você vai fazer?" />
-                <button type="submit">
-                    <i class="fa-thin fa-plus"></i>
-                </button>
+              <input type="text" id="todo-input" name="tarefinha" placeholder="O que você vai fazer?" />
+              <button type="submit">
+                <i class="fa-thin fa-plus"></i>
+              </button>
             </div>
-        </form>
+          </form>
 
         <!--Formulário para editar a tarefa-->
 
