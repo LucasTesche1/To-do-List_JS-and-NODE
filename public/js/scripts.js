@@ -18,15 +18,6 @@ let oldInputValue;
 
 //Função pra salvar a tarefa e criar no HTML
 
-  const handleClickButton = () =>{
-    Axios.post("http://localhost:3000/index",{
-      h3:values.content,
-      :values.date
-    }).then((response)=>{
-      console.log(response)
-   })
-  } 
-
   const saveTodo = (text, done = 0, save = 1) => {
   const todo = document.createElement("div");
   todo.classList.add("todo");
@@ -56,6 +47,7 @@ let oldInputValue;
   deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   todo.appendChild(deleteBtn);
 
+  
   // Utilizando dados da localStorage
   if (done) {
     todo.classList.add("done");
@@ -63,13 +55,39 @@ let oldInputValue;
 
   if (save) {
     saveTodoLocalStorage({ text, done: 0 });
+    handleThisClickButton({ text, date: createdDate});
   }
 
   todoList.appendChild(todo);
 
   todoInput.value = "";
+
+  
 };
-4;
+
+// função para salvar no banco de dados
+
+const handleThisClickButton = () =>{
+
+  const tarefinha = document.getElementById("todo-input").value;
+  const currentDate = new Date();
+  const dataFormatada = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+  const horaFormatada = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+  axios.post("http://localhost:3000/index",{
+
+    tarefinha: tarefinha,
+    dataFormatada: dataFormatada,
+    horaFormatada: horaFormatada
+  })
+    .then(response => {
+      console.log('Foi enviado para o server:', response);
+    })
+    .catch(error => {
+      console.error('Erro ao salvar a tarefa no banco de dados:', error);
+    });
+  
+  }
+
 
 // Função pra esconder tudo quando o for editar
 const toggleForms = () => {
@@ -211,6 +229,7 @@ editForm.addEventListener("submit", (e) => {
   toggleForms();
 });
 
+
 //Evento que dispara a busca
 
 searchInput.addEventListener("keyup", (e) => {
@@ -287,6 +306,7 @@ const updateTodoLocalStorage = (todoOldText, todoNewText) => {
 
   localStorage.setItem("todos", JSON.stringify(todos));
 };
+
 
 
 

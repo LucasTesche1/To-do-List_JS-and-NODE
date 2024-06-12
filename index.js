@@ -13,12 +13,21 @@ app.use(express.json());
 let path = require("path");
 
 //DB
+app.use(bodyParser.json());
 const db = mysql. createPool({
   host: "localhost",
   user:"root",
-  password:"c@tolic@",
+  password:"",
   database:"teste",
 })
+
+db.getConnection((err) => {
+  if (err) {
+    console.log("Erro ao se conectar com o servidor", err);
+  } else {
+    console.log ("Conectado ao banco de dados!");
+  }
+});
 
 //"USE" UTILIZADO PARA O CÓDIGO DA SESSÃO
 app.use(session({ secret: "nfsjhdnfshfbn2123ui23mm" }));
@@ -110,26 +119,25 @@ app.post("/", (req, res) => {
 });
 
 
+app.get("/index", (req,res) => {
+  res.render("index");
+})
+
 app.post("/index", (req, res) => {
+  const {tarefinha} = req.body;
+  const {dataFormatada} = req.body;
+  const {horaFormatada} = req.body;
 
-  const {id_tasks,
-    content,
-    date} = req.body;
+  let SQL = "INSERT INTO tasks(content,date,hour) VALUES (?,?,?)";
 
-  if (!req.session.login) {
-    return res.redirect("/");
-  }
-  res.render(req.params.page, { login: req.session.login });
+  db.query(SQL,[tarefinha,dataFormatada,horaFormatada],(err, result)=>{
+       console.log(err);
 
-  //DB
-
-  let SQL = "INSERT INTO tasks(id_tasks,content,date) VALUES (?,?,?)";
-
-  db.query(SQL,[id_tasks,content,date],(err, result) =>{
-    console.log(err);
-  })
-
+  });
 });
+
+
+
 
 app.get("/pastas", (req, res) => {
   if (!req.session.login) {
@@ -143,5 +151,5 @@ app.get("/pastas", (req, res) => {
 
 //CONFIRMAÇÃO DE SERVER FUNCIONANDO
 app.listen(port, () => {
-  console.log("servidor rodando");
+  console.log(`Servidor rodando na porta ${port}`);
 });
