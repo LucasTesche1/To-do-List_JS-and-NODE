@@ -8,10 +8,13 @@ const bodyParser = require("body-parser");
 const mysql = require('mysql2');
 const port = 3000;
 const app = express();
+const { v4: uuidv4 } = require('uuid');
+
 app.use(cors());
 app.use(express.json());
 app.use(session({ secret: "nfsjhdnfshfbn2123ui23mm" }));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 let path = require("path");
 
 //CONEXÃO COM BANCO DE DADOS
@@ -49,20 +52,21 @@ const users = [];
 
 //ROTA DE CADASTRO PARA SALVAR AS INFORMAÇÕES E REDIRECIONAR PARA A PAGINA DE LOGIN
 app.post("/cadastro", (req, res) => {
+  
   const { login, password} = req.body;
+  const idusers = uuidv4(); 
+  
+  console.log("GERANDO UM ID: ", idusers);
 
-  //VERIFICA SE O USUÁRIO JÁ ESTÁ CADASTRADO
   const userExists = users.some((user) => user.login === login);
   if (userExists) {
     console.log("Usuário já está cadastrado!");
     return res.redirect("/");
   }
 
-  //DB
+  let SQL = "INSERT INTO users( idusers, login, password) VALUES (?,?,?)";
 
-  let SQL = "INSERT INTO users(login,password) VALUES (?,?)";
-
-  db.query(SQL,[login,password],(err, result) =>{
+  db.query(SQL,[idusers,login,password],(err, result) =>{
     console.log(err);
   })
 
