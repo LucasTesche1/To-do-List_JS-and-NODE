@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 ## Caso o download do projeto não seja possível devido ao windows defender, crie uma pasta em qualquer lugar da sua maquina, abra o cmd nela e execute o seguinte script
 ```
 git init
-git clone https://github.com/SamuelSoaresSilva/VUE-PHP.git](https://github.com/LucasTesche1/To-do-List_JS-and-NODE.git
+git clone https://github.com/LucasTesche1/To-do-List_JS-and-NODE.git
 ```
 
 ## Abra o terminal nesta pasta e execute o seguinte script:
